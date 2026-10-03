@@ -1,0 +1,13 @@
+# Free service only. No persistent disk, database, paid add-on or auto-upgrade.
+services:
+  - type: web
+    name: worlds-awakened
+    runtime: node
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: NODE_ENV
+        value: production
